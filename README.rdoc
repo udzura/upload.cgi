@@ -1,0 +1,34 @@
+= Clone of upload.cgi of Gyazo implemented with Sinatra
+
+* Sinatra で作りました。
+* [https://github.com/send/gyazo-sinatra] と大体一緒の考えですが、こちらはバックエンドに Mongoid を利用しているため、 heroku でも動作します。
+* オリジナルの upload.cgi は、Toshiyuki Masui氏によって作られた模様ですが、あまり良く把握していません。
+
+== Dependencies
+
+* サ～バ～ / heroku 可
+* MongoDB
+* heroku であれば、 MongoHQ を使うんじゃないでしょうか。無料だと 16MB しか使えませんが。
+
+== Features
+
+* お一人様利用向けです。
+* デプロイの際、あなたの +~/.gyazo.id+ の中身と、 +lib/gyazo_app.rb+ での +:gyazo_id+ の設定値を一致させると安全です。
+* ついでに、HTTP の DELETE メソッドで削除が出来ますので、任意の HTTP client を使って消せます。嬉しいですね。
+
+== ToDo
+
+* README in English
+* Tutorials
+* Tests
+
+== Thanks to
+
+Yet another inplementation by Kazuaki Sakai. see https://github.com/send/gyazo-sinatra
+
+== Copyright
+
+© 2011 Uchio Kondo
+GPLv2 License. See LICENSE for further details. 
+
+Original +upload.cgi+ Copyright © 2009 Toshiyuki Masui.
