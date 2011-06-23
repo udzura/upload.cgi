@@ -15,6 +15,12 @@ class GyazoApp < Sinatra::Base
   get '/' do
     redirect options.repository_url
   end
+  
+  get '/favicon.ico' do
+    send_file File.expand_path("../../favicon.ico", __FILE__),
+              :type => 'image/x-icon', :disposition => 'inline' \
+        rescue raise(Sinatra::NotFound)
+  end
 
   post '/upload.cgi' do
     data = (begin

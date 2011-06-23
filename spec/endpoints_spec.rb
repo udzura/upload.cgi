@@ -14,6 +14,12 @@ describe GyazoApp do
     get '/'
     last_response.should be_redirect
   end
+  
+  it 'has favicon' do
+    get '/favicon.ico'
+    last_response.should be_ok
+    last_response.content_type.should == 'image/x-icon'
+  end
 
   it 'should be uploaded something' do
     Gyazo::Image.should_receive(:create!).and_return(@image)
