@@ -1,9 +1,13 @@
 require File.expand_path('../spec_helper', __FILE__)
 
 describe GyazoApp do
-  before :all do
+  before :each do
     @file = File.open(File.expand_path('../dummy-image.png', __FILE__))
     @image = Gyazo::Image.create!(:gyazo_hash => "test-hash", :body => BSON::Binary.new(@file.read))
+  end
+
+  after :each do
+    @image.delete rescue nil
   end
 
   it 'says hello' do
