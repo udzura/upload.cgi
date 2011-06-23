@@ -12,7 +12,7 @@ describe GyazoApp do
 
   it 'says hello' do
     get '/'
-    last_response.should be_not_found
+    last_response.should be_redirect
   end
 
   it 'should be uploaded something' do
@@ -24,6 +24,11 @@ describe GyazoApp do
   it 'should show image' do
     get '/test-hash.png'
     last_response.should be_ok
+  end
+
+  it 'should show 404 if no image' do
+    get '/test-nonexist-hash.png'
+    last_response.should be_not_found
   end
 
   it 'should be able to delete image' do

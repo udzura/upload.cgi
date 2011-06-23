@@ -4,11 +4,16 @@ require 'gyazo/image'
 class GyazoApp < Sinatra::Base
   set :gyazo_id, false
   #set :my_host, "gyazo.udzura.jp"
+  set :repository_url, 'https://github.com/udzura/upload.cgi'
   
   before do
     if !request.get? && options.gyazo_id
       halt(500) unless params[:id] == options.gyazo_id
     end
+  end
+
+  get '/' do
+    redirect options.repository_url
   end
 
   post '/upload.cgi' do
@@ -24,7 +29,8 @@ class GyazoApp < Sinatra::Base
 
   get '/:id.png' do
     content_type 'image/png'
-    @image = Gyazo::Image.where(:gyazo_hash => params[:id]).first
+    @image = Gyazo::Image.where(:gyazo_hash => params[:id]).first \
+        or raise(Sinatra::NotFound)
     @image.body.to_s
   end
 
