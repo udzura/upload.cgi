@@ -3,7 +3,7 @@ require 'gyazo/image'
 
 class GyazoApp < Sinatra::Base
   set :gyazo_id, false
-  #set :my_host, "g.udr.me"
+  #set :my_host, "gyazo.udzura.jp"
   
   before do
     if !request.get? && options.gyazo_id
