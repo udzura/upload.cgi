@@ -33,16 +33,16 @@ class GyazoApp < Sinatra::Base
     "http://#{options.my_host rescue request.host_with_port}/#{@image.gyazo_hash}.png"
   end
 
-  get '/:id.png' do
-    @image = Gyazo::Image.where(:gyazo_hash => params[:id]).first \
+  get '/:hash.png' do
+    @image = Gyazo::Image.where(:gyazo_hash => params[:hash]).first \
         or raise(Sinatra::NotFound)
     content_type 'image/png'
     @image.body.to_s
   end
 
-  delete '/:id.png' do
+  delete '/:hash.png' do
     content_type 'text/plain'
-    @image = Gyazo::Image.where(:gyazo_hash => params[:id]).first
+    @image = Gyazo::Image.where(:gyazo_hash => params[:hash]).first
     @image.destroy ? "Destroy Success!" : halt(503)
   end
 end
