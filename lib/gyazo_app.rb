@@ -28,9 +28,9 @@ class GyazoApp < Sinatra::Base
   end
 
   get '/:id.png' do
-    content_type 'image/png'
     @image = Gyazo::Image.where(:gyazo_hash => params[:id]).first \
         or raise(Sinatra::NotFound)
+    content_type 'image/png'
     @image.body.to_s
   end
 
